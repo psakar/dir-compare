@@ -243,7 +243,7 @@ var compare = function (path1, path2, level, relativePath, options, compareFileC
  *  equal: number of equal entries
  *  left: number of entries only in path1
  *  right: number of entries only in path2
- *  differencies: total number of differencies (distinct+left+right)
+ *  differences: total number of differences (distinct+left+right)
  *  same: true if directories are identical
  *  diffSet - List of changes
  *      path1: absolute path not including file/directory name,
@@ -285,8 +285,8 @@ var compareSync = function (path1, path2, options, compareFileCallback, resultBu
         compareFileCallback = defaultCompareFileCallback;
     }
     compare(path1, path2, 0, '', options === undefined ? {} : options, compareFileCallback, resultBuilderCallback, res);
-    res.differencies = res.distinct + res.left + res.right;
-    res.same = res.differencies ? false : true;
+    res.differences = res.distinct + res.left + res.right;
+    res.same = res.differences ? false : true;
 
     return res;
 };
