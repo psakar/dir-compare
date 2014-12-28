@@ -8,11 +8,10 @@ $ npm install dir-compare -g
 ```
 
 ## Usage
-```
+```javascript
 var utils = require('util');
 var dircompare = require('dir-compare');
-var options = {...};
-var res = dircompare.compareSync(path1, path2, options);
+var res = dircompare.compareSync(path1, path2, {compareSize: true});
 console.log('equal: ' + res.equal);
 console.log('distinct: ' + res.distinct);
 console.log('left: ' + res.left);
@@ -28,9 +27,7 @@ res.diffSet.forEach(function (entry) {
     }[entry.state];
     var name1 = entry.name1 ? entry.name1 : '';
     var name2 = entry.name2 ? entry.name2 : '';
-    var type1 = entry.type1 ? entry.type1 : 'missing';
-    var type2 = entry.type2 ? entry.type2 : 'missing';
-    console.log(utils.format('%s(%s)%s%s(%s)', name1, type1, state, name2, type2));
+    console.log(utils.format('%s(%s)%s%s(%s)', name1, entry.type1, state, name2, entry.type2));
 });
 ```
 Options:
@@ -95,7 +92,7 @@ Result:
   Exit codes:
     0 - entries are identical
     1 - entries are different
-    2 - error occured
+    2 - error occurred
 
   Examples:
     compare by content - dircompare -c dir1 dir2
